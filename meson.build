@@ -13,13 +13,13 @@ if host_system == 'linux'
     if wayland_opt_dep.found()
         sources += ['src/wayland/WaylandMiniFB.c']
         deps += [wayland_opt_dep]
-    else if x11_opt_dep.found()
+    elif x11_opt_dep.found()
         sources += ['src/x11/X11MiniFB.c']
         deps += [x11_opt_dep]
     else
         error('Linux builds require either Wayland or X11')
     endif
-else if host_system == 'darwin'
+elif host_system == 'darwin'
     add_languages('objc')
     sources += [
         'src/macosx/MacMiniFB.m',
@@ -29,7 +29,7 @@ else if host_system == 'darwin'
         'src/macosx/OSXWindowFrameView.m'
     ]
     deps += [dependency('appleframeworks', modules: 'Cocoa')]
-else if host_system == 'windows'
+elif host_system == 'windows'
     sources += ['src/windows/WinMiniFB.c']
 else
     error('Unsupported platform: ' + host_system)
